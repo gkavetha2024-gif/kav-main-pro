@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto11
+      java: corretto21
   pre_build:
     commands:
       #- echo Code Scanning using SonarQube
@@ -17,10 +17,10 @@ phases:
       - ls -lrta
       - ls -lrt $CODEBUILD_SRC_DIR/settings.xml
       - cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
-      - mvn deploy
+      - mvn clean deploy
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/b78am.war
+    - target/kav-main.war
