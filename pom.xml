@@ -39,7 +39,7 @@
     
       <repository>
         <id>bcr-b78am</id>
-        <url>https://bcr-420815905200.d.codeartifact.us-east-1.amazonaws.com/maven/b78am/</url>
+        <url>https://us-east-1.console.aws.amazon.com/codesuite/codeartifact/d/951322694844/kav-pro/r/kav-main-pro</url>
       </repository>
 
 </distributionManagement>    
