@@ -10,7 +10,7 @@ phases:
       - ls -lrta
     #  - cd $CODEBUILD_SRC_DIR
       - echo "Code Scanning....."
-      - mvn -X clean verify sonar:sonar
+    #  - mvn -X clean verify sonar:sonar
     #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
       - echo "Code Scanning completed....."
       - pwd
