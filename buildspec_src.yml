@@ -1,3 +1,36 @@
+version: 0.2 
+phases:
+  install:
+    runtime-versions:
+      java : corretto21
+  pre_build:
+    commands:
+      - echo "pre-build started"
+      - pwd
+      - ls -lrta
+    #  - cd $CODEBUILD_SRC_DIR
+      - echo "Code Scanning....."
+      - mvn -X clean verify sonar:sonar
+    #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
+      - echo "Code Scanning completed....."
+      - pwd
+      - ls -lrta
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean validate compile test install verify package
+      - ls -lrta
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    #- target/staragile-1.0.0.war
+    # - '**/*'
+    - target/**/*.war
+
+
+
 # version: 0.2
 
 # phases:
@@ -28,34 +61,34 @@
 #      - target/kav-main.war
 
 
-version: 0.2
+# version: 0.2
 
-phases:
-  install:
-    runtime-versions:
-      java: corretto21
+# phases:
+#   install:
+#     runtime-versions:
+#       java: corretto21
 
-  pre_build:
-    commands:
-      - echo "===== Java Version ====="
-      - java -version
-      - echo "===== Maven Version ====="
-      - mvn -version
-      - echo "===== Project Files ====="
-      - pwd
-      - ls -la
-      - echo "===== Checking pom.xml ====="
-      - ls -l pom.xml
+#   pre_build:
+#     commands:
+#       - echo "===== Java Version ====="
+#       - java -version
+#       - echo "===== Maven Version ====="
+#       - mvn -version
+#       - echo "===== Project Files ====="
+#       - pwd
+#       - ls -la
+#       - echo "===== Checking pom.xml ====="
+#       - ls -l pom.xml
 
-  build:
-    commands:
-      - echo "===== Build started on `date` ====="
-      #- mvn clean package
+#   build:
+#     commands:
+#       - echo "===== Build started on `date` ====="
+#       #- mvn clean package
 
-  post_build:
-    commands:
-      - echo "===== Build completed on `date` ====="
+#   post_build:
+#     commands:
+#       - echo "===== Build completed on `date` ====="
 
-artifacts:
-  files:
-    - ./target/kav-main.war
+# artifacts:
+#   files:
+#     - target/kav-main.war
