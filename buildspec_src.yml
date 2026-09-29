@@ -58,4 +58,4 @@ phases:
 
 artifacts:
   files:
-    - target/kav-main.war
+    - '**/*.war'
