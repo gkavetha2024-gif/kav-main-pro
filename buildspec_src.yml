@@ -1,63 +1,62 @@
-# version: 0.2 
-# phases:
-#   install:
-#     runtime-versions:
-#       java : corretto21
-#   pre_build:
-#     commands:
-#       - echo "pre-build started"
-#       - pwd
-#       - ls -lrta
-#     #  - cd $CODEBUILD_SRC_DIR
-#       - echo "Code Scanning....."
-#     #  - mvn -X clean verify sonar:sonar
-#     #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
-#       - echo "Code Scanning completed....."
-#       - pwd
-#       - ls -lrta
-#   build:
-#     commands:
-#       - echo Build started on `date`
-#       - ls -lrta
-#   post_build:
-#     commands:
-#       - echo Build completed on `date`
-# artifacts:
-#   files:
-#     #- target/staragile-1.0.0.war
-#      - '**/*'
-#     # - 'target/*'
-
-
-
-version: 0.2
-
+version: 0.2 
 phases:
   install:
     runtime-versions:
-      java: corretto21
+      java : corretto21
   pre_build:
     commands:
-      - echo Code Scanning using SonarQube
-      #- mvn -e clean verify
-      - mvn verify
-      #- echo Connecting AWS CodeArtifact 
-      #- export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain bcr --domain-owner 420815905200 --region us-east-1 --query authorizationToken --output text`
+      - echo "pre-build started"
+      - pwd
+      - ls -lrta
+      - echo "Code Scanning....."
+    #  - mvn -X clean verify sonar:sonar
+    #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
+      - echo "Code Scanning completed....."
+      - pwd
+      - ls -lrta
   build:
     commands:
       - echo Build started on `date`
-      - mvn install
-      #- pwd
-      #- ls -lrta
-      #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
-      #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
-      #- mvn clean deploy
+      - ls -lrta
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
+    #- target/staragile-1.0.0.war
      - '**/*'
+    # - 'target/*'
+
+
+
+# version: 0.2
+
+# phases:
+#   install:
+#     runtime-versions:
+#       java: corretto21
+#   pre_build:
+#     commands:
+#       - echo Code Scanning using SonarQube
+#       #- mvn -e clean verify
+#       - mvn verify
+#       #- echo Connecting AWS CodeArtifact 
+#       #- export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain bcr --domain-owner 420815905200 --region us-east-1 --query authorizationToken --output text`
+#   build:
+#     commands:
+#       - echo Build started on `date`
+#       - mvn install
+#       #- pwd
+#       #- ls -lrta
+#       #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
+#       #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
+#       #- mvn clean deploy
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+# artifacts:
+#   files:
+#      - '**/*'
 
 
 # version: 0.2

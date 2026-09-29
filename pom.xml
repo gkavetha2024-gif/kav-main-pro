@@ -13,10 +13,10 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
 
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <!-- <sonar.host.url>https://sonarcloud.io</sonar.host.url> -->
         <sonar.organization>gkavetha2024-gif</sonar.organization>
         <sonar.projectKey>gkavetha2024-gif_kav-main-pro</sonar.projectKey>
-        <sonar.login>89a56792f7a478aaa7a9b3775c39cf659d433669</sonar.login>
+        <sonar.login>58195faf53d8fc868bf6a3d410691bb811787d40</sonar.login>
         
     </properties>
 
