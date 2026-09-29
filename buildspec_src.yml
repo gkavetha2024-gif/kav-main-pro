@@ -55,11 +55,7 @@ phases:
   post_build:
     commands:
       - echo "===== Build completed on `date` ====="
-      - echo "===== Target directory ====="
-     # - ls -lah target/
-      - echo "===== WAR files ====="
-      - find target -type f -name "*.war" -print
 
 artifacts:
   files:
-    - 'target/kav-main.war'
+    - target/kav-main.war
