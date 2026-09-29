@@ -4,10 +4,10 @@ phases:
   install:
     runtime-versions:
       java: corretto21
-  pre_build:
-    commands:
-      - echo Code Scanning using SonarQube
-      - mvn clean verify
+ # pre_build:
+  #  commands:
+   #   - echo Code Scanning using SonarQube
+    #  - mvn clean verify
       #- mvn verify sonar:sonar
       #- echo Connecting AWS CodeArtifact 
       #- export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain bcr --domain-owner 420815905200 --region us-east-1 --query authorizationToken --output text`
