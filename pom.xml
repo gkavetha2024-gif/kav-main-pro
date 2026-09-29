@@ -34,7 +34,7 @@
     </repository>	
 </distributionManagement>
     -->
-<!--     
+    
 <distributionManagement>
     
       <repository>
@@ -42,7 +42,7 @@
         <url>https://us-east-1.console.aws.amazon.com/codesuite/codeartifact/d/951322694844/kav-pro/r/kav-main-pro</url>
       </repository>
 
-</distributionManagement>     -->
+</distributionManagement>    
     
     <dependencies>
         <dependency>
