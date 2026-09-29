@@ -14,7 +14,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - mvn install
+      #- mvn install
       #- pwd
       #- ls -lrta
       #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
@@ -25,4 +25,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/kav-main.war
+    - target/*
