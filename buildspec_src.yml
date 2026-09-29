@@ -1,28 +1,65 @@
+# version: 0.2
+
+# phases:
+#   install:
+#     runtime-versions:
+#       java: corretto21
+#   pre_build:
+#     commands:
+#       - echo Code Scanning using SonarQube
+#       #- mvn -e clean verify
+#       #- mvn verify sonar:sonar
+#       #- echo Connecting AWS CodeArtifact 
+#       #- export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain bcr --domain-owner 420815905200 --region us-east-1 --query authorizationToken --output text`
+#   build:
+#     commands:
+#       - echo Build started on `date`
+#       #- mvn install
+#       #- pwd
+#       #- ls -lrta
+#       #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
+#       #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
+#       #- mvn clean deploy
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+# artifacts:
+#   files:
+#      - target/kav-main.war
+
+
 version: 0.2
 
 phases:
   install:
     runtime-versions:
       java: corretto21
+
   pre_build:
     commands:
-      - echo Code Scanning using SonarQube
-      #- mvn -e clean verify
-      #- mvn verify sonar:sonar
-      #- echo Connecting AWS CodeArtifact 
-      #- export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain bcr --domain-owner 420815905200 --region us-east-1 --query authorizationToken --output text`
+      - echo "===== Java Version ====="
+      - java -version
+      - echo "===== Maven Version ====="
+      - mvn -version
+      - echo "===== Project Files ====="
+      - pwd
+      - ls -la
+      - echo "===== Checking pom.xml ====="
+      - ls -l pom.xml
+
   build:
     commands:
-      - echo Build started on `date`
-      #- mvn install
-      #- pwd
-      #- ls -lrta
-      #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
-      #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
-      #- mvn clean deploy
+      - echo "===== Build started on `date` ====="
+      - mvn clean package
+
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo "===== Build completed on `date` ====="
+      - echo "===== Target directory ====="
+      - ls -lah target/
+      - echo "===== WAR files ====="
+      - find target -type f -name "*.war" -print
+
 artifacts:
   files:
-     - target/kav-main.war
+    - target/kav-main.war
