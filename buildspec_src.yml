@@ -28,7 +28,7 @@ artifacts:
   files:
     #- target/staragile-1.0.0.war
     # - '**/*'
-     - 'target/kav-main.war'
+     - 'target/*'
 
 
 
