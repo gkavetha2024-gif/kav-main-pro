@@ -12,20 +12,23 @@ phases:
     #  - mvn -X clean verify sonar:sonar
     #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
       - echo "Code Scanning completed....."
-      - pwd
-      - ls -lrta
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain "my-kav" --domain-owner "951322694844" --region "us-east-1" --query authorizationToken --output text`
   build:
     commands:
       - echo Build started on `date`
+      - pwd
       - ls -lrta
+      - ls -lrt settings.xml
+      - cp -pvr settings.xml ~/.m2/settings.xml
+      - mvn clean deploy
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
     #- target/staragile-1.0.0.war
-     - '**/*'
-    # - 'target/*'
+    # - '**/*'
+     - 'target/kav-main.war'
 
 
 

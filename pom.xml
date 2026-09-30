@@ -38,8 +38,8 @@
 <distributionManagement>
     
       <repository>
-        <id>bcr-b78am</id>
-        <url>https://kav-pro-951322694844.d.codeartifact.us-east-1.amazonaws.com/kav-main-pro/</url>
+        <id>my-kav-kav-pro</id>
+        <url>https://my-kav-951322694844.d.codeartifact.us-east-1.amazonaws.com/maven/kav-pro/</url>
       </repository>
 
 </distributionManagement>    
