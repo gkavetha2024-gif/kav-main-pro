@@ -20,7 +20,7 @@ phases:
       - ls -lrta
       - ls -lrt settings.xml
       - cp -pvr settings.xml ~/.m2/settings.xml
-      - mvn clean deploy
+    #  - mvn clean deploy
   post_build:
     commands:
       - echo Build completed on `date`
