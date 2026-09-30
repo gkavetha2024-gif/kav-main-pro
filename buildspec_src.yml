@@ -27,8 +27,8 @@ phases:
 artifacts:
   files:
     #- target/staragile-1.0.0.war
-    # - '**/*'
-     - 'target/*'
+     - '**/*'
+    # - 'target/kav-main.war'
 
 
 
