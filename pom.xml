@@ -20,29 +20,31 @@
         
     </properties>
 
-    <!--
-    <distributionManagement>
-    <snapshotRepository>
-        <id>snapshots</id>
-        <name>a0bdlik6tnfce-artifactory-primary-0-snapshots</name>
-        <url>https://devopskesav.jfrog.io/artifactory/libs-snapshot</url>
-    </snapshotRepository>
-    <repository>
-        <id>releases</id>
-        <name>a0bdlik6tnfce-artifactory-primary-0-releases</name>
-        <url>https://devopskesav.jfrog.io/artifactory/libs-releases</url>
-    </repository>	
-</distributionManagement>
-    -->
-    
 <distributionManagement>
+    
+    <snapshotRepository>
+          <id>snapshots</id>
+          <name>libs-snapshot-local</name>  
+          <url>http://54.237.232.231:8082/artifactory/libs-snapshot-local/</url>  
+            
+    </snapshotRepository>
+    
+    <repository>
+          <id>release</id>
+          <name>libs-release-local</name>  
+          <url>http://54.237.232.231:8082/artifactory/libs-release-local/</url>   
+    </repository>	
+    
+</distributionManagement>
+    
+<!-- <distributionManagement>
     
       <repository>
         <id>my-kav-kav-pro</id>
         <url>https://my-kav-951322694844.d.codeartifact.us-east-1.amazonaws.com/maven/kav-pro/</url>
       </repository>
 
-</distributionManagement>    
+</distributionManagement>     -->
     
     <dependencies>
         <dependency>
