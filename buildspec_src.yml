@@ -62,7 +62,7 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/kav-main.war
+    - '**/*'
 
 
 # version: 0.2
