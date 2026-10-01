@@ -40,10 +40,10 @@ phases:
       java: corretto21
   pre_build:
     commands:
-       - echo "Package Artifact"
+      #- echo "Package Artifact"
       #- echo Code Scanning using SonarQube
       #- mvn verify sonar:sonar
-      #- echo Publish Artifact To JFROG  
+      - echo Publish Artifact To JFROG  
   build:
     commands:
       - echo Build started on `date`
