@@ -85,7 +85,7 @@ phases:
       #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
       #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
       #- echo Publish Artifact To JFROG based on the User Input in POM.xml file 
-      - mvn install
+      #- mvn install
       - echo "Deliver Artifact To Tomcat and Deploy"
       - aws s3 cp s3://amzn-kav-main-pro/kav-pro1.war /usr/share/tomcat/webapps/kav-pro1.war
       # - sh 'curl -u admin:redhat@123 -T target/**.war "http://44.211.143.213:8080/manager/text/deploy?path=/b78am&update=true"'
