@@ -31,6 +31,39 @@
 #     # - 'target/kav-main.war'
 
 
+# version: 0.2
+
+# phases:
+#   install:
+#     runtime-versions:
+#       java: corretto21
+#   pre_build:
+#     commands:
+#       #- echo "Package Artifact"
+#       #- echo Code Scanning using SonarQube
+#       #- mvn verify sonar:sonar
+#       - echo Publish Artifact To JFROG  
+#   build:
+#     commands:
+#       - echo Build started on `date`
+#       - pwd
+#       - ls -lrta
+#       - ls -lrt $CODEBUILD_SRC_DIR/settings.xml
+#       - cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
+#       - echo Publish Artifact To JFROG based on the User Input in POM.xml file 
+#       #- mvn install
+#       #- echo "Deliver Artifact To Tomcat & Deploy"
+#       #- aws s3 cp s3://amzn-kav-main-pro/devops.war /usr/share/tomcat/webapps/devops.war
+#       #- Update the S3 bucket name as per your environment
+#       #- sh 'curl -u admin:redhat@123 -T target/**.war "http://44.211.143.213:8080/manager/text/deploy?path=/b78am&update=true"'
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+# artifacts:
+#   files:
+#     - '**/*'
+
+# This is for Tomcat from S3 Bucket
 
 version: 0.2
 
@@ -40,31 +73,30 @@ phases:
       java: corretto21
   pre_build:
     commands:
-      #- echo "Package Artifact"
+       - echo "Package Artifact"
       #- echo Code Scanning using SonarQube
       #- mvn verify sonar:sonar
-      - echo Publish Artifact To JFROG  
+      #- echo Publish Artifact To JFROG  
   build:
     commands:
       - echo Build started on `date`
       - pwd
       - ls -lrta
-      - ls -lrt $CODEBUILD_SRC_DIR/settings.xml
-      - cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
-      - echo Publish Artifact To JFROG based on the User Input in POM.xml file 
-      #- mvn install
-      #- echo "Deliver Artifact To Tomcat & Deploy"
-      #- aws s3 cp s3://amzn-kav-main-pro/devops.war /usr/share/tomcat/webapps/devops.war
-      #- Update the S3 bucket name as per your environment
-      #- sh 'curl -u admin:redhat@123 -T target/**.war "http://44.211.143.213:8080/manager/text/deploy?path=/b78am&update=true"'
+      #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
+      #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
+      #- echo Publish Artifact To JFROG based on the User Input in POM.xml file 
+      - mvn install
+      - echo "Deliver Artifact To Tomcat and Deploy"
+      - aws s3 cp s3://amzn-kav-main-pro/kav-pro1.war /usr/share/tomcat/webapps/kav-pro1.war
+      # - sh 'curl -u admin:redhat@123 -T target/**.war "http://44.211.143.213:8080/manager/text/deploy?path=/b78am&update=true"'
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - '**/*'
+    - target/kav-main-pro.war
 
-
+    
 # version: 0.2
 
 # phases:
