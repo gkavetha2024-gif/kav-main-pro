@@ -63,39 +63,30 @@
 #   files:
 #     - '**/*'
 
-# This is for Tomcat from S3 Bucket
-
-version: 0.2
-
 phases:
   install:
     runtime-versions:
-      java: corretto21
+      java: corretto11
   pre_build:
     commands:
-       - echo "Package Artifact"
       #- echo Code Scanning using SonarQube
       #- mvn verify sonar:sonar
-      #- echo Publish Artifact To JFROG  
+      - echo Connecting AWS CodeArtifact 
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain "my-kav" --domain-owner "951322694844" --region "us-east-1" --query authorizationToken --output text`
   build:
     commands:
       - echo Build started on `date`
       - pwd
       - ls -lrta
-      #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
-      #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
-      #- echo Publish Artifact To JFROG based on the User Input in POM.xml file 
-      #- mvn install
-      - echo "Deliver Artifact To Tomcat and Deploy"
-      - aws s3 cp s3://amzn-kav-main-pro/kav-pro1.war /opt/tomcat/webapps/kav-pro1.war
-      # - sh 'curl -u admin:redhat@123 -T target/**.war "http://44.211.143.213:8080/manager/text/deploy?path=/b78am&update=true"'
+      - ls -lrt $CODEBUILD_SRC_DIR/settings.xml
+      - cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
+      - mvn deploy
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
     - '**/*'
-
     
 # version: 0.2
 
