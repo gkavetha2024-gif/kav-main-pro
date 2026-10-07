@@ -1,34 +1,68 @@
-version: 0.2 
+# version: 0.2 
+# phases:
+#   install:
+#     runtime-versions:
+#       java : corretto21
+#   pre_build:
+#     commands:
+#       - echo "pre-build started"
+#       - pwd
+#       - ls -lrta
+#       - echo "Code Scanning....."
+#     #  - mvn -X clean verify sonar:sonar
+#     #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
+#       - echo "Code Scanning completed....."
+#       - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain "my-kav" --domain-owner "951322694844" --region "us-east-1" --query authorizationToken --output text`
+#   build:
+#     commands:
+#       - echo Build started on `date`
+#       - pwd
+#       - ls -lrta
+#       - ls -lrt settings.xml
+#       - cp -pvr settings.xml ~/.m2/settings.xml
+#     #  - mvn clean deploy
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+# artifacts:
+#   files:
+#     #- target/staragile-1.0.0.war
+#      - '**/*'
+#     # - 'target/kav-main.war'
+
+# This is for Tomcat from S3 Bucket
+
+version: 0.2
+
 phases:
   install:
     runtime-versions:
-      java : corretto21
+      java: corretto21
   pre_build:
     commands:
-      - echo "pre-build started"
-      - pwd
-      - ls -lrta
-      - echo "Code Scanning....."
-    #  - mvn -X clean verify sonar:sonar
-    #  - mvn clean verify sonar:sonar -Dsonar.projectKey=3-Tier_pro_kav -Dsonar.host.url=http://44.193.25.195:9000 -Dsonar.token=sqp_a587e45dd35963dafb808099a1d9cd57e9a6fc34
-      - echo "Code Scanning completed....."
-      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain "my-kav" --domain-owner "951322694844" --region "us-east-1" --query authorizationToken --output text`
+       - echo "Package Artifact"
+      #- echo Code Scanning using SonarQube
+      #- mvn verify sonar:sonar
+      #- echo Publish Artifact To JFROG  
   build:
     commands:
       - echo Build started on `date`
       - pwd
       - ls -lrta
-      - ls -lrt settings.xml
-      - cp -pvr settings.xml ~/.m2/settings.xml
-    #  - mvn clean deploy
+      #- ls -lrt $CODEBUILD_SRC_DIR/settings.xml
+      #- cp -pvr $CODEBUILD_SRC_DIR/settings.xml ~/.m2/settings.xml
+      #- echo Publish Artifact To JFROG based on the User Input in POM.xml file 
+      #- mvn install
+      - echo "Deliver Artifact To Tomcat and Deploy"
+      - aws s3 cp s3://amzn-kav-main-pro/kav-pro1.war /opt/tomcat/webapps/kav-pro1.war
+      # - sh 'curl -u admin:Home@123 -T target/**.war "http://44.211.143.213:8080/manager/text/deploy?path=/b78am&update=true"'
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    #- target/staragile-1.0.0.war
-     - '**/*'
-    # - 'target/kav-main.war'
+    - '**/*'
+
 
 
 
