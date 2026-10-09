@@ -31,12 +31,12 @@
   <servers>
     <server>
       <username>admin</username>
-      <password>Home@123</password>
+      <password>admin@123</password>
       <id>release</id>
     </server>
     <server>
       <username>admin</username>
-      <password>Home@123</password>
+      <password>admin@123</password>
       <id>snapshots</id>
     </server>
   </servers>
